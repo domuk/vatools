@@ -1,0 +1,38 @@
+dismiss_timer:
+  name: Dismiss Timer
+  description: Dismiss a currently firing timer
+  fields:
+    timer_id:
+      name: Timer ID
+      description: The ID of the timer to dismiss
+      required: true
+      selector:
+        number:
+          min: 1
+          mode: box
+
+dismiss_alarm:
+  name: Dismiss Alarm
+  description: Dismiss a currently firing alarm
+  fields:
+    alarm_id:
+      name: Alarm ID
+      description: The ID of the alarm to dismiss
+      required: true
+      selector:
+        number:
+          min: 1
+          mode: box
+
+cancel_timer:
+  name: Cancel Timer
+  description: Cancel an active timer
+  fields:
+    timer_id:
+      name: Timer ID
+      description: The ID of the timer to cancel
+      required: true
+      selector:
+        number:
+          min: 1
+          mode: box

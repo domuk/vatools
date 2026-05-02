@@ -1,0 +1,55 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to V.E.S.P.A.",
+        "description": "Enter the URL and credentials for your V.E.S.P.A. server.",
+        "data": {
+          "server_url": "Server URL",
+          "username": "Username",
+          "password": "Password"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Unable to connect to the server. Check the URL.",
+      "invalid_auth": "Invalid username or password.",
+      "unknown": "An unexpected error occurred."
+    },
+    "abort": {
+      "already_configured": "This server is already configured."
+    }
+  },
+  "services": {
+    "dismiss_timer": {
+      "name": "Dismiss Timer",
+      "description": "Dismiss a currently firing timer.",
+      "fields": {
+        "timer_id": {
+          "name": "Timer ID",
+          "description": "The ID of the timer to dismiss."
+        }
+      }
+    },
+    "dismiss_alarm": {
+      "name": "Dismiss Alarm",
+      "description": "Dismiss a currently firing alarm.",
+      "fields": {
+        "alarm_id": {
+          "name": "Alarm ID",
+          "description": "The ID of the alarm to dismiss."
+        }
+      }
+    },
+    "cancel_timer": {
+      "name": "Cancel Timer",
+      "description": "Cancel an active timer.",
+      "fields": {
+        "timer_id": {
+          "name": "Timer ID",
+          "description": "The ID of the timer to cancel."
+        }
+      }
+    }
+  }
+}

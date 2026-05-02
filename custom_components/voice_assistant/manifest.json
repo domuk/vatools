@@ -1,0 +1,11 @@
+{
+  "domain": "voice_assistant",
+  "name": "V.E.S.P.A.",
+  "codeowners": ["@domuk"],
+  "config_flow": true,
+  "documentation": "https://github.com/domuk/vatools",
+  "iot_class": "local_push",
+  "issue_tracker": "https://github.com/domuk/vatools/issues",
+  "requirements": ["aiohttp>=3.9.0"],
+  "version": "1.0.0"
+}
