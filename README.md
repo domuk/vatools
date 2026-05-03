@@ -1,60 +1,82 @@
-# V.E.S.P.A. — Home Assistant Integration
-
 <p align="center">
-  <img src="icon.png" alt="V.E.S.P.A. Logo" width="128" />
+  <img src="icon.png" alt="V.E.S.P.A." width="150" />
 </p>
 
-A custom HACS integration that connects Home Assistant to your [V.E.S.P.A.](https://github.com/domuk/vatools) server — a standalone voice assistant with ESPHome and Wyoming satellite support. Monitor satellites, manage timers and alarms, and view voice interactions directly from your HA dashboard.
+<h1 align="center">V.E.S.P.A. for Home Assistant</h1>
+<p align="center"><strong>HACS Integration for the V.E.S.P.A. Voice Platform</strong></p>
+
+<p align="center">
+  <a href="https://github.com/domuk/vatools/releases"><img src="https://img.shields.io/badge/release-v1.0.0-blue?style=for-the-badge" alt="Release"></a>
+  <img src="https://img.shields.io/badge/HACS-Custom-orange?style=for-the-badge" alt="HACS">
+  <img src="https://img.shields.io/badge/HA-2024.1+-41BDF5?style=for-the-badge&logo=homeassistant&logoColor=white" alt="Home Assistant">
+</p>
+
+<p align="center">
+Connect Home Assistant to your <a href="https://github.com/domuk/V.E.S.P.A.">V.E.S.P.A.</a> server — monitor satellites, manage timers and alarms, and view voice interactions directly from your HA dashboard.
+</p>
+
+---
 
 ## Features
 
-- **Sidebar Panel** — Live dashboard inside Home Assistant showing:
-  - Satellite status (online/offline, pipeline state: idle/listening/processing/responding)
-  - Active timers with live countdowns and dismiss buttons
-  - Alarms with dismiss controls
-  - Recent voice interactions feed
-- **Sensors** — Per-satellite pipeline state, last transcript, last response
-- **Binary Sensors** — Server connection status, per-satellite online/offline
-- **Services** — `dismiss_timer`, `dismiss_alarm`, `cancel_timer` (usable in automations)
-- **Real-time Updates** — WebSocket connection to the V.E.S.P.A. server pushes live events
+### Sidebar Panel
+Live dashboard inside Home Assistant with satellite cards, active timers with live countdowns, alarms with dismiss controls, recent voice interactions, and the ability to create timers and alarms directly.
+
+### Sensors & Binary Sensors
+- Per-satellite pipeline state, last transcript, last response
+- Server connection status, per-satellite online/offline
+- Active timer count
+
+### Lovelace Cards
+- **Timer Card** — live countdown of the soonest active timer with dismiss button
+- **Alarm Card** — next alarm with dismiss button
+
+### Services
+| Service | Description |
+|---------|-------------|
+| `voice_assistant.dismiss_timer` | Dismiss a firing timer |
+| `voice_assistant.dismiss_alarm` | Dismiss a firing alarm |
+| `voice_assistant.cancel_timer` | Cancel an active timer |
+
+### Multi-Server Support
+Connect to multiple V.E.S.P.A. instances — data from all servers appears together.
+
+---
 
 ## Installation
 
-### HACS (Recommended)
-1. Add this repository as a custom repository in HACS
-2. Install "V.E.S.P.A."
-3. Restart Home Assistant
-4. Go to Settings → Integrations → Add Integration → "V.E.S.P.A."
-5. Enter your server URL and credentials
+### HACS
+1. Open HACS → Integrations → Custom repositories
+2. Add `https://github.com/domuk/vatools` as Integration
+3. Install "V.E.S.P.A." → Restart HA
+4. Settings → Integrations → Add → V.E.S.P.A.
+5. Enter server URL and credentials
 
 ### Manual
-1. Copy `custom_components/voice_assistant/` to your HA `config/custom_components/` directory
-2. Restart Home Assistant
-3. Add the integration via Settings → Integrations
+Copy `custom_components/voice_assistant/` to `config/custom_components/` → Restart HA
 
-## Configuration
+---
 
-- **Server URL** — The URL of your V.E.S.P.A. server (e.g. `https://your-server-ip:8835`)
-- **Username** — Your V.E.S.P.A. login username
-- **Password** — Your V.E.S.P.A. login password
+## Lovelace Cards
 
-## Sidebar Panel
+Add as resources (Settings → Dashboards → Resources):
 
-After installation, a "V.E.S.P.A." item appears in the HA sidebar. The panel shows:
+| Card | URL | Type |
+|------|-----|------|
+| Timer | `/voice_assistant/frontend/timer-card.js` | JavaScript Module |
+| Alarm | `/voice_assistant/frontend/alarm-card.js` | JavaScript Module |
 
-- **Dashboard** — Satellite cards with live status, active timers, recent activity
-- **Timers & Alarms** — All active timers with countdowns, alarm list, dismiss/cancel buttons
-- **Activity Log** — Recent voice interactions with transcripts and responses
+```yaml
+type: custom:voice-assistant-timer-card
+```
 
-## Services
-
-| Service | Description |
-|---------|-------------|
-| `voice_assistant.dismiss_timer` | Dismiss a firing timer by ID |
-| `voice_assistant.dismiss_alarm` | Dismiss a firing alarm by ID |
-| `voice_assistant.cancel_timer` | Cancel an active timer by ID |
+---
 
 ## Requirements
 
-- V.E.S.P.A. server running and accessible from Home Assistant
-- Home Assistant 2024.1.0 or newer
+- [V.E.S.P.A. server](https://github.com/domuk/V.E.S.P.A.) running and accessible
+- Home Assistant 2024.1.0+
+
+## License
+
+Part of [V.E.S.P.A.](https://github.com/domuk/V.E.S.P.A.) — MIT License.
